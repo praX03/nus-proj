@@ -10,7 +10,7 @@ The ILSVRC2012 dataset is a subset of the large hand-labeled ImageNet dataset. T
 
 *fMRI on ImageNet*
 
- The fMRI data were recorded while subjects were viewing object images (image presentation experiment) or were imagining object images (imagery experiment). In the training image session, a total of 1,200 images from 150 object categories were each presented only once. In the test image session, a total of 50 images from 50 object categories were presented 35 times each. All images were from ImageNet (Fall 2011 release). In this paper, we use the fMRI data of the VC region in the image presentation experiment. The number of voxels in the VC region is 4466. The number of fMRI samples available is 2700.
+ The fMRI data were recorded while subjects were viewing object images (image presentation experiment) or were imagining object images (imagery experiment). In the training image session, a total of 1,200 images from 150 object categories were each presented only once. In the test image session, a total of 50 images from 50 object categories were presented 35 times each. All images were from ImageNet (Fall 2011 release). In this paper, we use the fMRI data of the visual cortex (VC) region in the image presentation experiment. The number of voxels in the VC region is 4466. The number of fMRI samples available is 2700.
 
 ## Model Pipeline
 
