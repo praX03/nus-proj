@@ -56,7 +56,7 @@ coverage.xml
 *.pot
 
 # Macos stuff
-.DS_Store
+**/.DS_Store
 
 # Django stuff:
 *.log
