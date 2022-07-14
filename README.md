@@ -16,7 +16,11 @@ The ILSVRC2012 dataset is a subset of the large hand-labeled ImageNet dataset. T
 
 <image src="assets/model_pipeline.svg">
 
-- # Model Deployment
+ - Extraction and Analysis
+ - Preparation
+ - Model Training
+ - Evaluation & Validation
+ - Serving
 
 
 ## Miscallaneous
