@@ -1,9 +1,0 @@
-numpy
-pillow
-opencv-python
-torch
-torchvision
-dominate
-visdom
-matplotlib
-scikit-learn
