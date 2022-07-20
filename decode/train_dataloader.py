@@ -11,9 +11,7 @@ import sys
 import os
 
 from torch.autograd import Variable
-cuda_available = torch.cuda.is_available()
-print("Checking for GPU on device:")
-print("Status: ", cuda_available)
+
 parser = argparse.ArgumentParser(description='image encoder')
 parser.add_argument('--img_data', type=str)
 parser.add_argument('--output', type=str)
@@ -24,15 +22,13 @@ image_dir = args.img_data
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
-if cuda_available:
-    net = models.vgg19_bn().cuda()
-else:
-    net = models.vgg19_bn().cpu()
+
+net = models.vgg19_bn(pretrained = True).cuda()
 net.classifier = nn.Sequential(*list(net.classifier.children())[:-6])
 
 print('---------loading decode training data---------')
 img_data = torchvision.datasets.ImageFolder(image_dir, transform=transforms.Compose([
-                                                transforms.Resize(256),
+                                                transforms.Scale(256),
                                                 transforms.CenterCrop(224),
                                                 transforms.ToTensor()]))
 testdata = torch.utils.data.DataLoader(img_data)
@@ -40,10 +36,7 @@ features = {}
 image = {}
 
 for step, (x, y) in enumerate(testdata):
-    if cuda_available:
-        b_x = x.cuda()
-    else:
-        b_x = x.cpu()
+    b_x = x.cuda()
     data = net(b_x)
     xxx = data.cpu().data.numpy()
     features[os.path.basename(img_data.imgs[step][0])] = xxx.flatten()
