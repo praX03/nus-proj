@@ -2,9 +2,11 @@
 
 from flask import Flask, render_template, request, session
 import os
+import pickle
 from werkzeug.utils import secure_filename
 from time import sleep
-from keras.models import load_model
+from tensorflow.keras.preprocessing import image 
+import numpy as np
 import matplotlib.pyplot as plt
 
 app = Flask(__name__, template_folder="templates")
@@ -19,7 +21,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # secret key
 app.secret_key = "jesher123"
 
-model = load_model("imagre.h5")
+model = pickle.load(open('imagre.pkl','rb'))
 
 
 @app.route("/")
@@ -61,7 +63,10 @@ def up():
 def combine():
     global FILE_NO
     in_file_path = "static/inputs/" + str(FILE_NO) + ".JPEG"
-    outs = model.predict(session["uploaded_img_file_path"])
+    fmri=image.load_img(session["uploaded_img_file_path"])
+    fmri = np.asarray(fmri)
+    fmri=np.expand_dims(fmri,axis=0)
+    outs=model.predict(fmri)
     name = str(FILE_NO) + ".png"
     sleep(3)
     plt.imsave(name, outs)
