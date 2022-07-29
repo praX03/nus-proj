@@ -67,10 +67,9 @@ def combine():
     fmri = np.asarray(fmri)
     fmri=np.expand_dims(fmri,axis=0)
     outs=model.predict(fmri)
-    name = str(FILE_NO) + ".png"
+    out_file_path = "static/outputs/" + str(FILE_NO) + ".png"
     sleep(3)
-    plt.imsave(name, outs)
-    out_file_path = "static/outputs/" + name
+    plt.imsave(out_file_path, outs)
     return render_template(
         "show_image.html",
         gen_image=out_file_path,
