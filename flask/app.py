@@ -61,11 +61,11 @@ def up():
 def combine():
     global FILE_NO
     in_file_path = "static/inputs/" + str(FILE_NO) + ".JPEG"
-    outs = model.predict(in_file_path)
+    outs = model.predict(session["uploaded_img_file_path"])
     name = str(FILE_NO) + ".png"
+    sleep(3)
     plt.imsave(name, outs)
     out_file_path = "static/outputs/" + name
-    sleep(3)
     return render_template(
         "show_image.html",
         gen_image=out_file_path,
